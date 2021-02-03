@@ -27,7 +27,7 @@ import android.support.v7.widget.Toolbar;
 
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.R;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.ExpenseManager;
-import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.InMemoryDemoExpenseManager;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.PersistentExpenseManager;
 
 public class MainActivity extends AppCompatActivity {
     private ExpenseManager expenseManager;
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        /***  Begin generating dummy data for In-Memory implementation  ***/
-        expenseManager = new InMemoryDemoExpenseManager();
+        /***  Begin the PersistentExpenseManager from sqlite  ***/
+        expenseManager = new PersistentExpenseManager(this);
         /*** END ***/
     }
 
@@ -105,12 +105,16 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
+                    //return getString(R.string.label_manage);
                     return getString(R.string.label_manage);
                 case 1:
+                    //return getString(R.string.label_add_account);
                     return getString(R.string.label_add_account);
                 case 2:
+                    //return getString(R.string.label_logs);
                     return getString(R.string.label_logs);
                 default:
+                    //return getString(R.string.label_manage);
                     return getString(R.string.label_manage);
             }
         }
